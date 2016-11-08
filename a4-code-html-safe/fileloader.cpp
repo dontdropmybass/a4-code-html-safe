@@ -11,7 +11,7 @@
 std::string FileLoader::loadFileToString(const std::string filename) {
     
     std::ifstream ifs;
-    std::string returnString;
+    std::string returnString = "";
     
     ifs.open(filename, std::fstream::in);
     
@@ -20,7 +20,10 @@ std::string FileLoader::loadFileToString(const std::string filename) {
     }
     
     while (!ifs.eof()) {
-        ifs >> returnString;
+        std::string temp;
+        getline(ifs,temp);
+        returnString = returnString.append(temp);
+        temp.clear();
     }
     
     ifs.close();
@@ -28,16 +31,26 @@ std::string FileLoader::loadFileToString(const std::string filename) {
     
 }
 
-bool FileLoader::validateFilePath(std::string path, std::string filesystem) {
-    return true;/// TODO replace
+bool FileLoader::validateFilePath(std::string path, std::string os) {
+    if (os == "override") {
+        return true;
+    }
+    else if (os == "windows") {
+        std::regex regex("([a-zA-Z]:)?(\\\\[a-zA-Z0-9._-]+)+\\\\?");
+        return std::regex_match(path, regex);
+    }
+    else {
+        std::regex regex("[^\0]+");
+        return std::regex_match(path, regex);
+    }
 }
 
 void FileLoader::saveStringToFile(std::string string, std::string filename) {
     
-    std::fstream fs;
+    std::ofstream ofs;
     
-    fs.open(filename, std::fstream::out | std::fstream::trunc);
-    if (!fs.is_open()) std::cout << "File does not exist." << std::endl;
-    fs << string;
-    fs.close();
+    ofs.open(filename, std::fstream::out | std::fstream::trunc);
+    if (!ofs.is_open()) std::cout << "Cannot open file " << filename << std::endl;
+    ofs << string;
+    ofs.close();
 }

@@ -11,6 +11,7 @@
 
 #include <fstream>
 #include <iostream>
+#include <regex>
 #include <string>
 #include <stdio.h>
 
@@ -22,7 +23,7 @@ public:
     
     static void saveStringToFile(std::string string, std::string filename);
     
-    static bool validateFilePath(std::string path, std::string filesystem);
+    static bool validateFilePath(std::string path, std::string os);
     
 };
 

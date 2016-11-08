@@ -20,7 +20,11 @@ void Replacer::replaceAll(std::string & orig, const std::string & find, const st
 }
 
 void Replacer::htmlReplaceCharacters(std::string & in) {
+    std::string temp = "<pre><code>";
     for (int i = 0; i < numChars; i++) {
         replaceAll(in, badChars[i], goodChars[i]);
     }
+    temp.append(in);
+    temp.append("</code></pre>");
+    in = temp;
 }
