@@ -12,6 +12,7 @@
 #include <fstream>
 #include <iostream>
 #include <regex>
+#include <sstream>
 #include <string>
 #include <stdio.h>
 
@@ -24,6 +25,8 @@ public:
     static void saveStringToFile(std::string string, std::string filename);
     
     static bool validateFilePath(std::string path, std::string os);
+    
+    static std::vector<std::string> split(const std::string &s, char delim);
     
 };
 

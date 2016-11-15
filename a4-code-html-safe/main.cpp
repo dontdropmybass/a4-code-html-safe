@@ -31,7 +31,16 @@ int main() {
         return main();
     }
     
-    std::string html = FileLoader::loadFileToString(filename);
+    std::string html;
+    
+    try {
+        html = FileLoader::loadFileToString(filename);
+    }
+    
+    catch (...) {
+        std::cout << "That is not a valid filename." << std::endl;
+        return main();
+    }
     
     Replacer::htmlReplaceCharacters(html);
     
@@ -43,12 +52,19 @@ output_spot:
     std::cout << std::endl;
     std::cin.clear();
     
-    if (!FileLoader::validateFilePath(filename, "windows")) {
+    if (!FileLoader::validateFilePath(filename, os)) {
         std::cout << "That is not a valid filename." << std::endl;
         goto output_spot;
     }
     
-    FileLoader::saveStringToFile(html, filename);
+    try {
+        FileLoader::saveStringToFile(html, filename);
+    }
+    
+    catch (...) {
+        std::cout << "That is not a valid filename." << std::endl;
+        goto output_spot;
+    }
     
     _getch();
     

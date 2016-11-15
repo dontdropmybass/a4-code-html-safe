@@ -32,25 +32,39 @@ std::string FileLoader::loadFileToString(const std::string filename) {
 }
 
 bool FileLoader::validateFilePath(std::string path, std::string os) {
-    if (os == "override") {
+    try {
+        if (os == "override") {
+            return true;
+        }
+        else if (os == "windows") {
+            if (path.length()>260) return false;
+            
+            std::regex regex("([a-zA-Z]:)?(\\\\[a-zA-Z0-9._-]+)+\\\\?");
+            
+            return (std::regex_match(path, regex)&&path.length());
+        }
+        else {
+            std::regex regex("[^\0]+");
+            return std::regex_match(path, regex);
+        }
+    }
+    catch (...) {
         return true;
-    }
-    else if (os == "windows") {
-        std::regex regex("([a-zA-Z]:)?(\\\\[a-zA-Z0-9._-]+)+\\\\?");
-        return std::regex_match(path, regex);
-    }
-    else {
-        std::regex regex("[^\0]+");
-        return std::regex_match(path, regex);
     }
 }
 
+std::vector<std::string> FileLoader::split(const std::string &s, char delim) {
+    std::stringstream stream(s);
+    std::string item;
+    std::vector<std::string> tokens;
+    while (getline(stream, item, delim)) {
+        tokens.push_back(item);
+    }
+    return tokens;
+}
+
 void FileLoader::saveStringToFile(std::string string, std::string filename) {
-    
-    std::ofstream ofs;
-    
-    ofs.open(filename, std::fstream::out | std::fstream::trunc);
-    if (!ofs.is_open()) std::cout << "Cannot open file " << filename << std::endl;
+    std::ofstream ofs(filename, std::fstream::out | std::fstream::trunc);
     ofs << string;
     ofs.close();
 }
