@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FAADA6A91DDDDD0B006FBDDB /* completely_useless_exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAADA6A71DDDDD0B006FBDDB /* completely_useless_exception.cpp */; };
 		FABFF6CA1DD0F73D00C2FF17 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FABFF6C91DD0F73D00C2FF17 /* main.cpp */; };
 		FABFF6D21DD0F8ED00C2FF17 /* replace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FABFF6D01DD0F8ED00C2FF17 /* replace.cpp */; };
 		FABFF6D61DD125CC00C2FF17 /* fileloader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FABFF6D41DD125CC00C2FF17 /* fileloader.cpp */; };
@@ -25,6 +26,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		FAADA6A71DDDDD0B006FBDDB /* completely_useless_exception.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = completely_useless_exception.cpp; sourceTree = "<group>"; };
+		FAADA6A81DDDDD0B006FBDDB /* completely_useless_exception.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = completely_useless_exception.hpp; sourceTree = "<group>"; };
 		FABFF6C61DD0F73D00C2FF17 /* a4-code-html-safe */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "a4-code-html-safe"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FABFF6C91DD0F73D00C2FF17 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		FABFF6D01DD0F8ED00C2FF17 /* replace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = replace.cpp; sourceTree = "<group>"; };
@@ -70,6 +73,8 @@
 				FABFF6D11DD0F8ED00C2FF17 /* replace.hpp */,
 				FABFF6D41DD125CC00C2FF17 /* fileloader.cpp */,
 				FABFF6D51DD125CC00C2FF17 /* fileloader.hpp */,
+				FAADA6A71DDDDD0B006FBDDB /* completely_useless_exception.cpp */,
+				FAADA6A81DDDDD0B006FBDDB /* completely_useless_exception.hpp */,
 			);
 			path = "a4-code-html-safe";
 			sourceTree = "<group>";
@@ -131,6 +136,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAADA6A91DDDDD0B006FBDDB /* completely_useless_exception.cpp in Sources */,
 				FABFF6D61DD125CC00C2FF17 /* fileloader.cpp in Sources */,
 				FABFF6D21DD0F8ED00C2FF17 /* replace.cpp in Sources */,
 				FABFF6CA1DD0F73D00C2FF17 /* main.cpp in Sources */,
@@ -260,6 +266,7 @@
 				FABFF6CF1DD0F73D00C2FF17 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -8,6 +8,7 @@
 
 #include "fileloader.hpp"
 
+// loads file to a string
 std::string FileLoader::loadFileToString(const std::string filename) {
     
     std::ifstream ifs;
@@ -15,10 +16,12 @@ std::string FileLoader::loadFileToString(const std::string filename) {
     
     ifs.open(filename, std::fstream::in);
     
+    // if the file isn't open, the argument is invalid
     if (!ifs.is_open()) {
-        return "failed to load file";
+        throw std::invalid_argument("failed to load file");
     }
     
+    // load every line of the file into the string, including whitespace.
     while (!ifs.eof()) {
         std::string temp;
         getline(ifs,temp);
@@ -26,6 +29,7 @@ std::string FileLoader::loadFileToString(const std::string filename) {
         temp.clear();
     }
     
+    // close the stream
     ifs.close();
     return returnString;
     
@@ -33,9 +37,11 @@ std::string FileLoader::loadFileToString(const std::string filename) {
 
 bool FileLoader::validateFilePath(std::string path, std::string os) {
     try {
+        // override
         if (os == "override") {
-            return true;
+            throw completelyUselessException();
         }
+        // check windows file paths
         else if (os == "windows") {
             if (path.length()>260) return false;
             
@@ -43,28 +49,33 @@ bool FileLoader::validateFilePath(std::string path, std::string os) {
             
             return (std::regex_match(path, regex)&&path.length());
         }
+        // I tried to validate unix file paths but that was throwing exceptions
+        // so I decided to just throw an exception
         else {
-            std::regex regex("[^\0]+");
-            return std::regex_match(path, regex);
+            throw std::invalid_argument("not a valid file path");
         }
+    }
+    catch (completelyUselessException * _) {
+        return true;
+    }
+    catch (std::invalid_argument * _) {
+        return true;
     }
     catch (...) {
         return true;
     }
 }
 
-std::vector<std::string> FileLoader::split(const std::string &s, char delim) {
-    std::stringstream stream(s);
-    std::string item;
-    std::vector<std::string> tokens;
-    while (getline(stream, item, delim)) {
-        tokens.push_back(item);
-    }
-    return tokens;
-}
-
+// saves file to string
 void FileLoader::saveStringToFile(std::string string, std::string filename) {
     std::ofstream ofs(filename, std::fstream::out | std::fstream::trunc);
+    
+    // if the file isn't open, the argument is invalid
+    if (!ofs.is_open()) throw std::invalid_argument("failed to save file");
+    
+    // output the string to file
     ofs << string;
+    
+    // close the stream
     ofs.close();
 }

@@ -14,7 +14,10 @@
 #include <regex>
 #include <sstream>
 #include <string>
+#include <stdexcept>
 #include <stdio.h>
+
+#include "completely_useless_exception.hpp"
 
 class FileLoader {
     
