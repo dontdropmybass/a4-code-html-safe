@@ -11,8 +11,10 @@
 
 #include <string>
 
+// number of characters in both arrays
 static const int numChars = 44;
 
+// "unsafe" characters
 static const std::string badChars[] = {
     "<",
     ">",
@@ -60,6 +62,7 @@ static const std::string badChars[] = {
     "—"
 };
 
+// safe characters to replace the bad "unsafe" characters
 static const std::string goodChars[] = {
     "&#060;",
     "&#062;",
