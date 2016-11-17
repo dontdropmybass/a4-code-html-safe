@@ -17,7 +17,7 @@ std::string FileLoader::loadFileToString(const std::string filename) {
     ifs.open(filename, std::fstream::in);
     
     // if the file isn't open, the argument is invalid
-    if (!ifs.is_open()) {
+    if (ifs.fail()) {
         throw std::invalid_argument("failed to load file");
     }
     
@@ -71,7 +71,7 @@ void FileLoader::saveStringToFile(std::string string, std::string filename) {
     std::ofstream ofs(filename, std::fstream::out | std::fstream::trunc);
     
     // if the file isn't open, the argument is invalid
-    if (!ofs.is_open()) throw std::invalid_argument("failed to save file");
+    if (ofs.fail()) throw std::invalid_argument("failed to save file");
     
     // output the string to file
     ofs << string;
